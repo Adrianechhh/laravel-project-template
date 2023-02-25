@@ -2,7 +2,7 @@ version: "3.7"
 
 volumes:
   app_volume:
-    name: ${PROJECT_NAME}-volume
+    name: ${APP_NAME}-volume
     driver: local
     driver_opts:
       type: nfs
@@ -11,7 +11,7 @@ volumes:
 
 services:
   db:
-    container_name: ${PROJECT_NAME}-db
+    container_name: ${APP_NAME}-db
     build:
       context: db
       args:
@@ -32,12 +32,13 @@ services:
       - ./.data/db:/var/lib/mysql
 
   php:
-    container_name: ${PROJECT_NAME}-php
+    container_name: ${APP_NAME}-php
     build:
       context: php-fpm
       args:
         GIT_USER: ${GIT_USER}
         GIT_EMAIL: ${GIT_EMAIL}
+        PROJECT_TIMEZONE: ${PROJECT_TIMEZONE}
     working_dir: /app
     environment:
       - APACHE_RUN_USER=www-data
@@ -48,7 +49,7 @@ services:
       - "9000:9000"
 
   nginx:
-    container_name: ${PROJECT_NAME}-nginx
+    container_name: ${APP_NAME}-nginx
     build: nginx
     ports:
       - "80:80"
@@ -59,7 +60,7 @@ services:
       - app_volume:/app
 
   clickhouse:
-    container_name: ${PROJECT_NAME}-clickhouse
+    container_name: ${APP_NAME}-clickhouse
     image: yandex/clickhouse-server:21.3
     restart: always
     volumes:
@@ -75,7 +76,7 @@ services:
       - "8123:8123"
 
   rabbitmq:
-    container_name: ${PROJECT_NAME}-rabbitmq
+    container_name: ${APP_NAME}-rabbitmq
     build:
       context: ./..
       dockerfile: docker/rabbitmq/Dockerfile
@@ -89,7 +90,7 @@ services:
       - "5672:5672"
       - "15672:15672"
   redis:
-    container_name: ${PROJECT_NAME}-redis
+    container_name: ${APP_NAME}-redis
     image: redis
     ports:
       - "6379:6379"

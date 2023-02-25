@@ -2,8 +2,9 @@ FROM php:8.0.28-fpm
 
 ARG GIT_USER
 ARG GIT_EMAIL
+ARG PROJECT_TIMEZONE
 
-ENV TIMEZONE=Europe/Moscow
+ENV TIMEZONE=${PROJECT_TIMEZONE}
 RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
     && echo ${TIMEZONE} > /etc/timezone \
     && printf '[PHP]\ndate.timezone = "%s"\n', ${TIMEZONE} > /usr/local/etc/php/conf.d/tzone.ini

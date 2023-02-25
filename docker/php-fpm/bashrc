@@ -6,4 +6,4 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
-export PS1='\[\033[38;5;247m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;76m\]${PROJECT_NAME}\[$(tput sgr0)\] > \[$(tput sgr0)\]\[\033[38;5;220m\]\w\[$(tput sgr0)\] \[\033[38;5;81m\]$(parse_git_branch) \[\033[0m\]'
+export PS1='\[\033[38;5;247m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;76m\]${APP_NAME}\[$(tput sgr0)\] > \[$(tput sgr0)\]\[\033[38;5;220m\]\w\[$(tput sgr0)\] \[\033[38;5;81m\]$(parse_git_branch) \[\033[0m\]'

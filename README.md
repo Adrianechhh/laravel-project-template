@@ -1,15 +1,18 @@
-# Project title
-
+# Laravel template project
+This template project includes configured and ready to use **PHP 8.0**, **MySQL 8.0**, **ClickHouse 21.3**, **Nginx**, **Redis** and **RabbitMQ** docker containers and **Laravel 9**
+project files, created by `composer create-project laravel/laravel example-app` command. Nothing extra!
 ---
 
-### Local installation process
+## Installation
 
-To install and run this project on a local machine follow next steps:
+To install and run this project follow next steps:
 
-1. Create the .env file:
+1. Create the **.env** file:
     ``` sh
     cp .env.example .env
     ````
+    Set your own `GIT_EMAIL`,  `GIT_USER`, `APP_NAME` in the [.env](.env) file. You can also specify the project **name** and **description** at your [composer.json](composer.json).
+
 2. Build containers:
     ``` sh
     docker-compose build
