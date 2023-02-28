@@ -1,6 +1,5 @@
 # Laravel template project
 
----
 This template project includes configured and ready to use **PHP 8.0**, **MySQL 8.0**, **ClickHouse 21.3**, **Nginx**, **Redis** and **RabbitMQ** docker containers and **Laravel 9**
 project files, created by `composer create-project laravel/laravel example-app` command. Nothing extra!
 
