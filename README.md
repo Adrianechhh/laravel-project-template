@@ -34,3 +34,18 @@ To install and run this project follow next steps:
    php artisan migrate &&
    php artisan clickhouse:migrate
    ```
+
+### RabbitMQ Queue
+
+The RabbitMQ Management panel can be accesed at http://localhost:15672/.
+The **user** and **password** are specified in the [.env](.env) file.
+If you want yor queues run automatically, use the [docker/php-fpm/supervisor.conf](docker/php-fpm/supervisor.conf) file
+and configure the command for your queue. 
+Rebuild your docker containers after configuring supervisor or execute next commands inside your PHP container: 
+``` sh 
+cp /app/docker/php-fpm/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+supervisorctl reread
+supervisorctl update
+```
+
+Don't forget to set **autostart** to **true** in the [supervisor.conf](docker/php-fpm/supervisor.conf) file.

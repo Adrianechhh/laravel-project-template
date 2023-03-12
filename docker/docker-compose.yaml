@@ -76,6 +76,7 @@ services:
       - "8123:8123"
 
   rabbitmq:
+    hostname: 'dev-rabbitmq'
     container_name: ${APP_NAME}-rabbitmq
     build:
       context: ./..
@@ -92,5 +93,7 @@ services:
   redis:
     container_name: ${APP_NAME}-redis
     image: redis
+    volumes:
+      - ./.data/redis/data:/data
     ports:
       - "6379:6379"
