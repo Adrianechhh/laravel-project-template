@@ -40,12 +40,10 @@ To install and run this project follow next steps:
 The RabbitMQ Management panel can be accesed at http://localhost:15672/.
 The **user** and **password** are specified in the [.env](.env) file.
 If you want yor queues run automatically, use the [docker/php-fpm/supervisor.conf](docker/php-fpm/supervisor.conf) file
-and configure the command for your queue. 
-Rebuild your docker containers after configuring supervisor or execute next commands inside your PHP container: 
-``` sh 
-cp /app/docker/php-fpm/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
-supervisorctl reread
-supervisorctl update
-```
-
+and configure the command for your queue.
 Don't forget to set **autostart** to **true** in the [supervisor.conf](docker/php-fpm/supervisor.conf) file.
+After making changes in the config to make them take effect execute next commands inside your PHP container: 
+``` sh 
+cp /app/docker/php-fpm/supervisor.conf /etc/supervisor/conf.d/supervisor.conf &&
+service supervisor restart
+```

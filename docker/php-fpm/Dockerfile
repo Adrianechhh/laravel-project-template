@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
 		libzip-dev \
 		git \
         nodejs  \
+        nano \
         supervisor \
         p7zip-full \
         && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -38,8 +39,6 @@ RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 
 COPY ./php.ini /usr/local/etc/php/
 COPY ./supervisor.conf /etc/supervisor/conf.d/supervisor.conf
-
-RUN service supervisor start
 
 RUN git config --global user.name $GIT_USER && \
     git config --global user.email $GIT_EMAIL && \
