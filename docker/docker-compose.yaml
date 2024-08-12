@@ -50,14 +50,16 @@ services:
 
   nginx:
     container_name: ${APP_NAME}-nginx
-    build: nginx
-    ports:
-      - "80:80"
+    image: nginx:alpine
+    environment:
+      PHP_FPM_HOST: ${APP_NAME}-php
+      CORS_PROXY: 'cors_proxy.conf'
+    volumes:
+      - app_volume:/app
+      - ./nginx/config/conf.d:/etc/nginx/templates
+      - ./nginx/configs:/etc/nginx/includes
     depends_on:
       - php
-    volumes:
-      - ./.data/nginx/logs:/var/log/nginx
-      - app_volume:/app
 
   clickhouse:
     container_name: ${APP_NAME}-clickhouse
